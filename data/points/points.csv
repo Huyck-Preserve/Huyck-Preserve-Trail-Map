@@ -1,0 +1,2 @@
+gid,record_id,latitude,longitude,name,icon,description,photo_filename,audio_filename,url
+1,1,42.5269445,-74.1591538,Phenocam,Camera,This is the Huyck Preserve Phenocam!,phenocam.jpg,,https://phenocam.sr.unh.edu/webcam/sites/huyckpreserveny
