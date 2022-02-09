@@ -191,17 +191,17 @@ function showFeatureModal(properties) {
   document.getElementById("feature-general_description").innerHTML = properties.description;
   // document.getElementById("feature-_server_updated_at").innerHTML = new Date(properties._server_updated_at).toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"});
   document.getElementById("feature-other_photos").innerHTML = "";
-  if (properties.photo_marquee) {
-    document.getElementById("feature-photo_marquee").innerHTML = `<a href="data/points/photos/${properties.photo_marquee}.jpg" target="_blank"><img src="data/points/photos/${properties.photo_marquee}.jpg" class="img-fluid mx-auto d-block" alt="photo"></img>`;
-    photos.push(properties.photo_marquee);
+  if (properties.photo1_filename) {
+    document.getElementById("feature-photo_marquee").innerHTML = `<a href="data/points/photos/${properties.photo1_filename}" target="_blank"><img src="data/points/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    photos.push(properties.photo1_filename);
   } else {
     document.getElementById("feature-photo_marquee").innerHTML = "";
   }
   if (properties.photo_other) {
     photos = photos.concat(properties.photo_other.split(","));
   }
-  if (properties.audio) {
-    document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/points/audio/${properties.audio}.mp3"> Your browser does not support the audio element.</audio></div>`)
+  if (properties.audio_filename) {
+    document.getElementById("feature-audio").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/points/audio/${properties.audio_filename}"> Your browser does not support the audio element.</audio></div>`)
   }
   photos.forEach(photo => {
     document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><a href="data/points/photos/${photo}.jpg" target="_blank"><img src="data/points/photos/${photo}.jpg" class="img-thumbnail mx-auto d-block" style="max-height: 100px" alt="photo"></img></a></div>`);
