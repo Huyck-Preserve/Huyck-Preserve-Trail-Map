@@ -6,13 +6,14 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '2.08.22.1'},
-  {url: 'manifest.json', revision: '12.10.21.1'},
-  {url: 'assets/js/app.js', revision: '2.08.22.1'},
-  {url: 'assets/css/app.css', revision: '10.01.21.1'},
+  {url: 'index.html', revision: '2.10.22.1'},
+  {url: 'manifest.json', revision: '2.10.22.1'},
+  {url: 'assets/js/app.js', revision: '2.10.22.1'},
+  {url: 'assets/css/app.css', revision: '2.10.22.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '10.01.21.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '10.01.21.1'},
   {url: 'assets/img/favicon-16x16.png', revision: '10.01.21.1'},
+  {url: 'assets/img/icons/information.png', revision: '2.10.22.1'},
   {url: 'assets/img/icons/Beaver.png', revision: '11.04.21.1'},
   {url: 'assets/img/icons/Bird.png', revision: '11.04.21.1'},
   {url: 'assets/img/icons/Building.png', revision: '11.04.21.1'},
@@ -43,9 +44,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/leaflet-locatecontrol-0.74.0/L.Control.Locate.min.js', revision: '10.01.21.1'},
   {url: 'assets/vendor/leaflet-mbtiles/Leaflet.TileLayer.MBTiles.js', revision: '10.01.21.1'},
   {url: 'assets/vendor/csv2geojson-5.1.1/csv2geojson.min.js', revision: '11.05.21.2'},
-  {url: 'data/trail_map.mbtiles', revision: '12.07.21.1'},
-  {url: 'data/points.csv', revision: '2.07.22.1'},
-  {url: 'data/photos/phenocam.jpg', revision: '2.07.22.1'}
+  {url: 'data/trail_map.mbtiles', revision: '2.10.22.1'},
+  {url: 'data/points.csv', revision: '2.10.22.1'}
 ], {
   // Ignore all URL parameters.
   ignoreURLParametersMatching: [/.*/]
