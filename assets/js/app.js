@@ -50,19 +50,19 @@ const layers = {
   overlays: {
     "Points of Interest": L.geoJSON(null, {
       pointToLayer: (feature, latlng) => {
-        return L.circleMarker(latlng, {
+        return L.marker(latlng, {
           title: feature.properties.name,
-          radius: 4,
-          color: "green",
-          fillColor: "blue",
-          stroke: 0.5,
-          fillOpacity: 1
-          // icon: L.icon({
-          //   iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
-          //   iconSize: [16, 18],
-          //   iconAnchor: [8, 18],
-          //   popupAnchor: [0, -14]
-          // })
+          // radius: 4,
+          // color: "green",
+          // fillColor: "blue",
+          // stroke: 0.5,
+          // fillOpacity: 1
+          icon: L.icon({
+            iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
+            iconSize: [16, 18],
+            iconAnchor: [8, 18],
+            popupAnchor: [0, -14]
+          })
         });
       },
       onEachFeature: (feature, layer) => {
@@ -175,7 +175,7 @@ function ZoomToExtent() {
 }
 
 function loadData() {
-  fetch('data/points/points.csv')
+  fetch('data/points.csv')
   .then(response => response.text())
   .then(data => csv2geojson.csv2geojson(data, {}, function(err, data) {
     if (data) {
@@ -187,12 +187,12 @@ function loadData() {
 function showFeatureModal(properties) {
   let photos = [];
   document.getElementById("feature-title").innerHTML = properties.name;
-  document.getElementById("feature-subtitle").innerHTML = properties.icon;
+ 
   document.getElementById("feature-general_description").innerHTML = properties.description;
   // document.getElementById("feature-_server_updated_at").innerHTML = new Date(properties._server_updated_at).toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"});
   document.getElementById("feature-other_photos").innerHTML = "";
   if (properties.photo1_filename) {
-    document.getElementById("feature-photo_marquee").innerHTML = `<a href="data/points/photos/${properties.photo1_filename}" target="_blank"><img src="data/points/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    document.getElementById("feature-photo_marquee").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
     photos.push(properties.photo1_filename);
   } else {
     document.getElementById("feature-photo_marquee").innerHTML = "";
@@ -200,11 +200,12 @@ function showFeatureModal(properties) {
   if (properties.photo_other) {
     photos = photos.concat(properties.photo_other.split(","));
   }
+  document.getElementById("feature-audio").innerHTML = "";
   if (properties.audio_filename) {
-    document.getElementById("feature-audio").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/points/audio/${properties.audio_filename}"> Your browser does not support the audio element.</audio></div>`)
+    document.getElementById("feature-audio").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/audio/${properties.audio_filename}"> Your browser does not support the audio element.</audio></div>`)
   }
   photos.forEach(photo => {
-    document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><a href="data/points/photos/${photo}.jpg" target="_blank"><img src="data/points/photos/${photo}.jpg" class="img-thumbnail mx-auto d-block" style="max-height: 100px" alt="photo"></img></a></div>`);
+    document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><a href="data/photos/${photo}.jpg" target="_blank"><img src="data/photos/${photo}.jpg" class="img-thumbnail mx-auto d-block" style="max-height: 100px" alt="photo"></img></a></div>`);
   });
   featureModal.show();
 }
