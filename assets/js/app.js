@@ -16,21 +16,21 @@ map.on("click", (e) => {
 
 const layers = {
   basemaps: {
-    "Streets": L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.@2xpng", {
-      maxNativeZoom: 18,
-      maxZoom: map.getMaxZoom(),
-      attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attribution">CARTO</a>',
-    }),
+    // "Streets": L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.@2xpng", {
+    //   maxNativeZoom: 18,
+    //   maxZoom: map.getMaxZoom(),
+    //   attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attribution">CARTO</a>',
+    // }),
     "Aerial": L.tileLayer("https://orthos.its.ny.gov/arcgis/rest/services/wms/2017/MapServer/tile/{z}/{y}/{x}", {
       maxNativeZoom: 18,
       maxZoom: map.getMaxZoom(),
       attribution: "NYS ITS - GPO",
     }),
-    "Topo": L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}", {
-      maxNativeZoom: 16,
-      maxZoom: map.getMaxZoom(),
-      attribution: "USGS",
-    }),
+    // "Topo": L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}", {
+    //   maxNativeZoom: 16,
+    //   maxZoom: map.getMaxZoom(),
+    //   attribution: "USGS",
+    // }),
     // "Winter Trails Map": L.tileLayer.mbTiles("data/trail_map_winter.mbtiles", {
     //   autoScale: true,
     //   updateWhenIdle: false
@@ -38,12 +38,12 @@ const layers = {
     //   layers.basemaps["Winter Trails Map"].bringToFront();
     //   map.removeLayer(layers.basemaps["Winter Trails Map"])
     // }).addTo(map),
-    "Huyck Trail Map": L.tileLayer.mbTiles("data/trail_map.mbtiles", {
+    "Trail Map": L.tileLayer.mbTiles("data/trail_map.mbtiles", {
       autoScale: true,
       fitBounds: true,
       updateWhenIdle: false
     }).on("databaseloaded", (e) => {
-      map.setMaxBounds(L.latLngBounds(layers.basemaps["Huyck Trail Map"].options.bounds).pad(0.1));
+      map.setMaxBounds(L.latLngBounds(layers.basemaps["Trail Map"].options.bounds).pad(0.1));
       controls.locateCtrl.start();
     })
   },
@@ -58,7 +58,7 @@ const layers = {
           // stroke: 0.5,
           // fillOpacity: 1
           icon: L.icon({
-            iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
+            iconUrl: `assets/img/icons/information.png`,
             iconSize: [16, 18],
             iconAnchor: [8, 18],
             popupAnchor: [0, -14]
@@ -171,7 +171,7 @@ const controls = {
 };
 
 function ZoomToExtent() {
-  map.fitBounds(layers.basemaps["Huyck Trail Map"].options.bounds);
+  map.fitBounds(layers.basemaps["Trail Map"].options.bounds);
 }
 
 function loadData() {
@@ -190,23 +190,42 @@ function showFeatureModal(properties) {
  
   document.getElementById("feature-general_description").innerHTML = properties.description;
   // document.getElementById("feature-_server_updated_at").innerHTML = new Date(properties._server_updated_at).toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"});
-  document.getElementById("feature-other_photos").innerHTML = "";
+  //document.getElementById("feature-other_photos").innerHTML = "";
   if (properties.photo1_filename) {
-    document.getElementById("feature-photo_marquee").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
-    photos.push(properties.photo1_filename);
+    document.getElementById("feature-photo_1").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    //photos.push(properties.photo1_filename);
   } else {
-    document.getElementById("feature-photo_marquee").innerHTML = "";
+    document.getElementById("feature-photo_1").innerHTML = "";
   }
-  if (properties.photo_other) {
-    photos = photos.concat(properties.photo_other.split(","));
+  if (properties.photo2_filename) {
+    document.getElementById("feature-photo_2").innerHTML = `<a href="data/photos/${properties.photo2_filename}" target="_blank"><img src="data/photos/${properties.photo2_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    //photos.push(properties.photo2_filename);
+  } else {
+    document.getElementById("feature-photo_2").innerHTML = "";
   }
-  document.getElementById("feature-audio").innerHTML = "";
+  if (properties.url_1) {
+    document.getElementById("feature-button-1").innerHTML = `<a href="${properties.url_1}" target="_blank"><button type="button" class="btn btn-primary btn-sm">${properties.url_1_button_label}</button>`;
+    //photos.push(properties.photo2_filename);
+  } else {
+    document.getElementById("feature-button-1").innerHTML = "";
+  }
+  if (properties.url_2) {
+    document.getElementById("feature-button-2").innerHTML = `<a href="${properties.url_2}" target="_blank"><button type="button" class="btn btn-success btn-sm">${properties.url_2_button_label}</button>`;
+    //photos.push(properties.photo2_filename);
+  } else {
+    document.getElementById("feature-button-2").innerHTML = "";
+  }
   if (properties.audio_filename) {
     document.getElementById("feature-audio").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/audio/${properties.audio_filename}"> Your browser does not support the audio element.</audio></div>`)
+  } else {
+    document.getElementById("feature-audio").innerHTML = "";
   }
-  photos.forEach(photo => {
-    document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><a href="data/photos/${photo}.jpg" target="_blank"><img src="data/photos/${photo}.jpg" class="img-thumbnail mx-auto d-block" style="max-height: 100px" alt="photo"></img></a></div>`);
-  });
+  //   if (properties.photo_other) {
+  //   photos = photos.concat(properties.photo_other.split(","));
+  // }
+  // photos.forEach(photo => {
+  //   document.getElementById("feature-other_photos").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><a href="data/photos/${photo}" target="_blank"><img src="data/photos/${photo}" class="img-thumbnail mx-auto d-block" style="max-height: 100px" alt="photo"></img></a></div>`);
+  // });
   featureModal.show();
 }
 
@@ -232,5 +251,5 @@ initSqlJs({
 }).then(function(SQL){
   hideLoader();
   loadData();
-  layers.basemaps["Huyck Trail Map"].addTo(map);
+  layers.basemaps["Trail Map"].addTo(map);
 });
