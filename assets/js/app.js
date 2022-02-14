@@ -8,6 +8,31 @@ const map = L.map("map", {
   maxZoom: 22,
   zoomControl: false
 }).fitWorld();
+
+function togglePage(page) {
+  console.log(page)
+  if (page=='invasives') {
+    $("#invasives").show();
+    $("#map").hide();
+    $("#trees").hide();
+  }
+  else if (page=='map') {
+    $("#map").show();
+    $("#invasives").hide();
+    $("#trees").hide();
+  }
+  else {
+    $("#trees").show();
+    $("#invasives").hide();
+    $("#map").hide();
+  }
+
+  
+}
+function ZoomToExtent() {
+  map.fitBounds(layers.basemaps["Trail Map"].options.bounds);
+}
+
 map.attributionControl.setPrefix("");
 
 map.on("click", (e) => {
@@ -21,11 +46,11 @@ const layers = {
     //   maxZoom: map.getMaxZoom(),
     //   attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attribution">CARTO</a>',
     // }),
-    "Aerial": L.tileLayer("https://orthos.its.ny.gov/arcgis/rest/services/wms/2017/MapServer/tile/{z}/{y}/{x}", {
-      maxNativeZoom: 18,
-      maxZoom: map.getMaxZoom(),
-      attribution: "NYS ITS - GPO",
-    }),
+    // "Aerial": L.tileLayer("https://orthos.its.ny.gov/arcgis/rest/services/wms/2017/MapServer/tile/{z}/{y}/{x}", {
+    //   maxNativeZoom: 18,
+    //   maxZoom: map.getMaxZoom(),
+    //   attribution: "NYS ITS - GPO",
+    // }),
     // "Topo": L.tileLayer("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}", {
     //   maxNativeZoom: 16,
     //   maxZoom: map.getMaxZoom(),
@@ -118,13 +143,13 @@ L.control.zoomextent = (opts) => {
 /*** End custom control ***/
 
 const controls = {
-  layerCtrl: L.control.layers(layers.basemaps, layers.overlays, {
-    collapsed: true,
-    position: "topright"
-  }).addTo(map),
+  // layerCtrl: L.control.layers(layers.basemaps, layers.overlays, {
+  //   collapsed: true,
+  //   position: "topright"
+  // }).addTo(map),
 
   zoomCtrl: L.control.zoomextent({
-    position: "bottomright"
+    position: "topleft"
   }).addTo(map),
 
   locateCtrl: L.control.locate({
@@ -132,7 +157,7 @@ const controls = {
     iconLoading: "spinner icon-gps_fixed",
     setView: "untilPan",
     cacheLocation: true,
-    position: "bottomright",
+    position: "topright",
     flyTo: false,
     keepCurrentZoomLevel: true,
     circleStyle: {
@@ -182,6 +207,17 @@ function loadData() {
       layers.overlays["Points of Interest"].addData(data);
     }
   }));
+}
+
+
+function emptyFeatureModal() {
+  document.getElementById("feature-title").innerHTML = "";
+  document.getElementById("feature-photo_1").innerHTML = "";
+  document.getElementById("feature-photo_2").innerHTML = "";
+  document.getElementById("feature-button-1").innerHTML = "";
+  document.getElementById("feature-button-2").innerHTML = "";
+  document.getElementById("feature-audio").innerHTML = "";
+  featureModal.hide();
 }
 
 function showFeatureModal(properties) {
@@ -253,3 +289,4 @@ initSqlJs({
   loadData();
   layers.basemaps["Trail Map"].addTo(map);
 });
+

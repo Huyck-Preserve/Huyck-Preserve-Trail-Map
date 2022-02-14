@@ -8,7 +8,52 @@ html, body, #map {
 }
 #map {
   background: white;
+  position: absolute;
+  bottom: 40;
+  top: 40px;
+  z-index:10;
 }
+
+#invasives, #trees {
+  width: 100%;
+  position: absolute ;
+  display:none;
+  bottom: 40px;
+  top: 40px;
+  overflow-x: scroll;
+
+}
+
+.full-page img {
+  display: block;
+  max-width:200%;
+  max-height:100%;
+  width: auto;
+  height: auto; 
+  
+}
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align:center;
+  height: 40px; /* Set the fixed height of the footer here */
+  line-height: 40px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+  z-index: 100;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align:center;
+  height: 40px; /* Set the fixed height of the footer here */
+  line-height: 40px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+  z-index: 100;
+}
+
 table {
   border-collapse: collapse;
   border-bottom: 1px solid #ccc;
