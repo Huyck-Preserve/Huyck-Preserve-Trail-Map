@@ -84,9 +84,9 @@ const layers = {
           // fillOpacity: 1
           icon: L.icon({
             iconUrl: `assets/img/icons/information.png`,
-            iconSize: [16, 18],
-            iconAnchor: [8, 18],
-            popupAnchor: [0, -14]
+            iconSize: [32, 36],
+            iconAnchor: [16, 36],
+            popupAnchor: [0, -28]
           })
         });
       },
@@ -116,10 +116,21 @@ const layers = {
         });
       }
     })
-    .addTo(map)
+    //.addTo(map)
   },
   select: L.featureGroup(null).addTo(map)
 };
+
+
+map.on('zoomend', function () {
+  if (map.getZoom() < 15 && map.hasLayer(layers.overlays["Points of Interest"])) {
+      map.removeLayer(layers.overlays["Points of Interest"]);
+  }
+  if (map.getZoom() > 15 && map.hasLayer(layers.overlays["Points of Interest"]) == false)
+  {
+      map.addLayer(layers.overlays["Points of Interest"]);
+  }   
+});
 
 /*** Begin Zoom Extent Control ***/
 L.Control.ZoomExtent = L.Control.extend({
@@ -199,6 +210,8 @@ function ZoomToExtent() {
   map.fitBounds(layers.basemaps["Trail Map"].options.bounds);
 }
 
+
+
 function loadData() {
   fetch('data/points.csv')
   .then(response => response.text())
@@ -228,25 +241,25 @@ function showFeatureModal(properties) {
   // document.getElementById("feature-_server_updated_at").innerHTML = new Date(properties._server_updated_at).toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"});
   //document.getElementById("feature-other_photos").innerHTML = "";
   if (properties.photo1_filename) {
-    document.getElementById("feature-photo_1").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    document.getElementById("feature-photo_1").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img></a>`;
     //photos.push(properties.photo1_filename);
   } else {
     document.getElementById("feature-photo_1").innerHTML = "";
   }
   if (properties.photo2_filename) {
-    document.getElementById("feature-photo_2").innerHTML = `<a href="data/photos/${properties.photo2_filename}" target="_blank"><img src="data/photos/${properties.photo2_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
+    document.getElementById("feature-photo_2").innerHTML = `<a href="data/photos/${properties.photo2_filename}" target="_blank"><img src="data/photos/${properties.photo2_filename}" class="img-fluid mx-auto d-block" alt="photo"></img></a>`;
     //photos.push(properties.photo2_filename);
   } else {
     document.getElementById("feature-photo_2").innerHTML = "";
   }
   if (properties.url_1) {
-    document.getElementById("feature-button-1").innerHTML = `<a href="${properties.url_1}" target="_blank"><button type="button" class="btn btn-primary btn-sm">${properties.url_1_button_label}</button>`;
+    document.getElementById("feature-button-1").innerHTML = `<a href="${properties.url_1}" target="_blank"><button type="button" class="btn btn-primary btn-sm">${properties.url_1_button_label}</button></a>`;
     //photos.push(properties.photo2_filename);
   } else {
     document.getElementById("feature-button-1").innerHTML = "";
   }
   if (properties.url_2) {
-    document.getElementById("feature-button-2").innerHTML = `<a href="${properties.url_2}" target="_blank"><button type="button" class="btn btn-success btn-sm">${properties.url_2_button_label}</button>`;
+    document.getElementById("feature-button-2").innerHTML = `<a href="${properties.url_2}" target="_blank"><button type="button" class="btn btn-success btn-sm">${properties.url_2_button_label}</button></a>`;
     //photos.push(properties.photo2_filename);
   } else {
     document.getElementById("feature-button-2").innerHTML = "";
