@@ -77,16 +77,16 @@ const layers = {
       pointToLayer: (feature, latlng) => {
         return L.marker(latlng, {
           title: feature.properties.name,
-          // radius: 4,
+          // radius: 8,
           // color: "green",
           // fillColor: "blue",
           // stroke: 0.5,
           // fillOpacity: 1
           icon: L.icon({
-            iconUrl: `assets/img/icons/information.png`,
-            iconSize: [32, 36],
-            iconAnchor: [16, 36],
-            popupAnchor: [0, -28]
+            iconUrl: `assets/img/info.png`,
+            iconSize: [20, 20],
+            iconAnchor: [10, 20],
+            popupAnchor: [0, -10]
           })
         });
       },
@@ -210,7 +210,9 @@ function ZoomToExtent() {
   map.fitBounds(layers.basemaps["Trail Map"].options.bounds);
 }
 
-
+$.getJSON("data/interactive_points.geojson", function (data) {
+  layers.overlays["Points of Interest"].addData(data);
+});
 
 function loadData() {
   fetch('data/points.csv')
@@ -241,13 +243,13 @@ function showFeatureModal(properties) {
   // document.getElementById("feature-_server_updated_at").innerHTML = new Date(properties._server_updated_at).toLocaleString(undefined, {year: "numeric", month: "long", day: "numeric"});
   //document.getElementById("feature-other_photos").innerHTML = "";
   if (properties.photo1_filename) {
-    document.getElementById("feature-photo_1").innerHTML = `<a href="data/photos/${properties.photo1_filename}" target="_blank"><img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img></a>`;
+    document.getElementById("feature-photo_1").innerHTML = `<img src="data/photos/${properties.photo1_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
     //photos.push(properties.photo1_filename);
   } else {
     document.getElementById("feature-photo_1").innerHTML = "";
   }
   if (properties.photo2_filename) {
-    document.getElementById("feature-photo_2").innerHTML = `<a href="data/photos/${properties.photo2_filename}" target="_blank"><img src="data/photos/${properties.photo2_filename}" class="img-fluid mx-auto d-block" alt="photo"></img></a>`;
+    document.getElementById("feature-photo_2").innerHTML = `<img src="data/photos/${properties.photo2_filename}" class="img-fluid mx-auto d-block" alt="photo"></img>`;
     //photos.push(properties.photo2_filename);
   } else {
     document.getElementById("feature-photo_2").innerHTML = "";
@@ -299,7 +301,7 @@ initSqlJs({
   }
 }).then(function(SQL){
   hideLoader();
-  loadData();
+  //loadData();
   layers.basemaps["Trail Map"].addTo(map);
 });
 

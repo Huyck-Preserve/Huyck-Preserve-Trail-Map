@@ -8,7 +8,7 @@ workbox.setConfig({
 workbox.precaching.precacheAndRoute([
   {url: 'index.html', revision: '2.16.22.1'},
   {url: 'manifest.json', revision: '2.10.22.1'},
-  {url: 'assets/js/app.js', revision: '2.16.22.1'},
+  {url: 'assets/js/app.js', revision: '2.16.22.2'},
   {url: 'assets/css/app.css', revision: '2.14.22.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '10.01.21.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '10.01.21.1'},
@@ -46,7 +46,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/leaflet-mbtiles/Leaflet.TileLayer.MBTiles.js', revision: '10.01.21.1'},
   {url: 'assets/vendor/csv2geojson-5.1.1/csv2geojson.min.js', revision: '11.05.21.2'},
   {url: 'data/trail_map.mbtiles', revision: '2.16.22.1'},
-  {url: 'data/points.csv', revision: '2.10.22.1'}
+  {url: 'data/points.csv', revision: '2.16.22.1'}
+  {url: 'data/interactive_points.geojson', revision: '2.16.22.1'}
 ], {
   // Ignore all URL parameters.
   ignoreURLParametersMatching: [/.*/]
