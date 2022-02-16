@@ -9,25 +9,28 @@ html, body, #map {
 #map {
   background: white;
   position: absolute;
-  bottom: 40;
-  top: 40px;
+  bottom: 50;
+  top: 50px;
   z-index:10;
 }
 
+.navbar-brand {
+    padding:0px;
+}
 #invasives, #trees {
   width: 100%;
   position: absolute ;
   display:none;
-  bottom: 40px;
-  top: 40px;
+  bottom: 50px;
+  top: 50px;
   overflow-x: scroll;
 
 }
 
 .full-page img {
   display: block;
-  max-width:200%;
-  max-height:100%;
+  max-width:2000px;
+  height:100%;
   width: auto;
   height: auto; 
   
