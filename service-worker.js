@@ -20,6 +20,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/img/icons/Gate.png', revision: '02.16.22'},
   {url: 'assets/img/icons/Ecosystem.png', revision: '02.16.22'},
   {url: 'assets/img/icons/Geology.png', revision: '02.16.22'},
+  {url: 'assets/img/icons/Hand Launch.png', revision: '02.16.22'},
   {url: 'assets/img/icons/Kiosk.png', revision: '02.16.22'},
   {url: 'assets/img/icons/Overlook.png', revision: '02.16.22'},
   {url: 'assets/img/icons/Plant.png', revision: '02.16.22'},
