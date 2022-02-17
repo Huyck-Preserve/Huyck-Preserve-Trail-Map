@@ -1,4 +1,11 @@
-
+html, body, #map {
+  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  /* overflow-x: hidden; */
+}
 
 #map {
   background: white;
@@ -26,8 +33,8 @@
 .full-page img {
   top:60px;
   display: block;
-  max-width:2000px;
-  height:100%;
+  max-width:100%;
+
   width: auto;
   height: auto; 
   

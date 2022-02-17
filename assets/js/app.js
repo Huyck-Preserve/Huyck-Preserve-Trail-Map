@@ -89,37 +89,38 @@ const layers = {
           // stroke: 0.5,
           // fillOpacity: 1
           icon: L.icon({
-            iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
-            iconSize: [24, 28],
-        iconAnchor: [12, 28],
-        popupAnchor: [0, -25]
+          iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
+          iconSize: [24, 28],
+          iconAnchor: [12, 28],
+          popupAnchor: [0, -25]
           })
         });
       },
       onEachFeature: (feature, layer) => {
         layer.on({
           popupclose: (e) => {
-            layers.select.clearLayers();
-            e.originalEvent.stopPropagation();
+//            layers.select.clearLayers();
+              return false;
           },
           click: (e) => {
+            
             showFeatureModal(feature.properties);
-            e.originalEvent.stopPropagation();
-            layers.select.clearLayers();
-            layers.select.addLayer(L.geoJSON(layer.toGeoJSON(), {
-              style: {
-                color: "#00FFFF",
-                weight: 5
-              },
-              pointToLayer: (feature, latlng) => {
-                return L.circleMarker(latlng, {
-                  radius: 6,
-                  color: "#00FFFF",
-                  fillColor: "#00FFFF",
-                  fillOpacity: 1
-                }); 
-              }
-            }))
+            return false;
+            // layers.select.clearLayers();
+            // layers.select.addLayer(L.geoJSON(layer.toGeoJSON(), {
+            //   style: {
+            //     color: "#00FFFF",
+            //     weight: 5
+            //   },
+            //   pointToLayer: (feature, latlng) => {
+            //     return L.circleMarker(latlng, {
+            //       radius: 6,
+            //       color: "#00FFFF",
+            //       fillColor: "#00FFFF",
+            //       fillOpacity: 1
+            //     }); 
+            //   }
+            // }))
           }
         });
       }
@@ -242,7 +243,12 @@ function emptyFeatureModal() {
 }
 
 function showFeatureModal(properties) {
-
+  document.getElementById("feature-title").innerHTML = "";
+  document.getElementById("feature-photo_1").innerHTML = "";
+  document.getElementById("feature-photo_2").innerHTML = "";
+  document.getElementById("feature-button-1").innerHTML = "";
+  document.getElementById("feature-button-2").innerHTML = "";
+  document.getElementById("feature-audio").innerHTML = "";
   let photos = [];
   document.getElementById("feature-title").innerHTML = properties.name;
  
