@@ -1,60 +1,36 @@
-html, body, #map {
-  /* height: 100vh; */
-  height: 100%;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-  /* overflow-x: hidden; */
-}
+
+
 #map {
   background: white;
-  position: absolute;
-  bottom: 50;
-  top: 50px;
-  z-index:10;
-}
-
-.navbar-brand {
-    padding:0px;
-}
-#invasives, #trees {
   width: 100%;
-  position: absolute ;
-  display:none;
-  bottom: 50px;
-  top: 50px;
-  overflow-x: scroll;
-
+  height: 100%;
+  top: 60px;
+  position: absolute;
+  z-index: 10;
+  bottom: 0px;
 }
 
+/* #invasives, #trees {
+  width: 100%;
+  top: 60px;
+  position: absolute;
+  display:none;
+  overflow-x: scroll;
+  z-index: 10;
+} */
+
+.full-page {
+  top:60px;
+  position: absolute;
+}
 .full-page img {
+  top:60px;
   display: block;
   max-width:2000px;
   height:100%;
   width: auto;
   height: auto; 
   
-}
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  text-align:center;
-  height: 40px; /* Set the fixed height of the footer here */
-  line-height: 40px; /* Vertically center the text there */
-  background-color: #f5f5f5;
-  z-index: 100;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align:center;
-  height: 40px; /* Set the fixed height of the footer here */
-  line-height: 40px; /* Vertically center the text there */
-  background-color: #f5f5f5;
-  z-index: 100;
 }
 
 table {

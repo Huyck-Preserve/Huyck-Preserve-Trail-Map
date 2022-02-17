@@ -20,29 +20,53 @@
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Huyck Preserve Guide</a>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav">
+      <div class="container">
+          <a class="navbar-brand" href="#page-top">Huyck Field Guide</a>
+          <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" onclick="togglePage('map')">Trail Map</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" onclick="togglePage('invasives')">Invasive Species Guide</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#" onclick="togglePage('trees')">Tree Guide</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="https://www.huyckpreserve.org" target="_BLANK_">About the Huyck Preserve</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="https://www.huyckpreserve.org/store/p64/Membership.html" target="_BLANK_">Become a Member</a>
+                </li>
+              </ul>
+          </div>
       </div>
-    </nav>
+  </nav>
+  
     <div id="map">
       <div class="progress" id="progress-bar">
         <div class="indeterminate"></div>
       </div>
     </div>
+
     <div class="full-page" id="invasives">
       <img src="data/Invasive Species Guide for Map_DRAFT.jpg" class="img-fluid" alt="Responsive image">
     </div>
     <div class="full-page" id="trees">
       <img src="data/photos/Beach_4.jpg" class="img-fluid" alt="Responsive image">
     </div>
+
     
     <footer class="footer">
       <div class="container">
         <div class="row">
-          <div class="col-4"><button type="button" class="btn btn-primary btn-sm" onclick="togglePage('map')">Trails</button></div>
-          <div class="col-4"><button type="button" class="btn btn-primary btn-sm" onclick="togglePage('invasives')">Invasives</button></div>
-          <div class="col-4"><button type="button" class="btn btn-primary btn-sm" onclick="togglePage('trees')">Trees</button></div>
+
         </div>
       </div>
     </footer>

@@ -5,9 +5,15 @@ const featureModal = new bootstrap.Modal(document.getElementById("featureModal")
 const map = L.map("map", {
   zoomSnap: L.Browser.mobile ? 0 : 1,
   tap: (L.Browser.safari && !L.Browser.mobile) ? false : true,
-  maxZoom: 22,
+  maxZoom: 20,
+  minZoom: 12,
   zoomControl: false
 }).fitWorld();
+
+$('.navbar-collapse a').click(function(){
+  $(".navbar-collapse").collapse('hide');
+});
+
 
 function togglePage(page) {
   console.log(page)
@@ -68,7 +74,7 @@ const layers = {
       fitBounds: true,
       updateWhenIdle: false
     }).on("databaseloaded", (e) => {
-      map.setMaxBounds(L.latLngBounds(layers.basemaps["Trail Map"].options.bounds).pad(0.1));
+      map.setMaxBounds(L.latLngBounds(layers.basemaps["Trail Map"].options.bounds).pad(1));
       controls.locateCtrl.start();
     })
   },
@@ -83,10 +89,10 @@ const layers = {
           // stroke: 0.5,
           // fillOpacity: 1
           icon: L.icon({
-            iconUrl: `assets/img/info.png`,
-            iconSize: [20, 20],
-            iconAnchor: [10, 20],
-            popupAnchor: [0, -10]
+            iconUrl: `assets/img/icons/${feature.properties.icon}.png`,
+            iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
           })
         });
       },
@@ -94,9 +100,11 @@ const layers = {
         layer.on({
           popupclose: (e) => {
             layers.select.clearLayers();
+            e.originalEvent.stopPropagation();
           },
           click: (e) => {
             showFeatureModal(feature.properties);
+            e.originalEvent.stopPropagation();
             layers.select.clearLayers();
             layers.select.addLayer(L.geoJSON(layer.toGeoJSON(), {
               style: {
@@ -159,10 +167,6 @@ const controls = {
   //   position: "topright"
   // }).addTo(map),
 
-  zoomCtrl: L.control.zoomextent({
-    position: "topleft"
-  }).addTo(map),
-
   locateCtrl: L.control.locate({
     icon: "icon-gps_fixed",
     iconLoading: "spinner icon-gps_fixed",
@@ -200,7 +204,9 @@ const controls = {
       alert(e.message);
     }
   }).addTo(map),
-
+  zoomCtrl: L.control.zoomextent({
+    position: "topright"
+  }).addTo(map),
   scaleCtrl: L.control.scale({
     position: "bottomleft"
   }).addTo(map)
@@ -236,6 +242,7 @@ function emptyFeatureModal() {
 }
 
 function showFeatureModal(properties) {
+
   let photos = [];
   document.getElementById("feature-title").innerHTML = properties.name;
  
