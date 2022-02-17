@@ -16,7 +16,7 @@ $('.navbar-collapse a').click(function(){
 
 
 function togglePage(page) {
-  console.log(page)
+  //console.log(page)
   if (page=='invasives') {
     $("#invasives").show();
     $("#map").hide();
