@@ -217,9 +217,9 @@ function ZoomToExtent() {
   map.fitBounds(layers.basemaps["Trail Map"].options.bounds);
 }
 
-$.getJSON("data/interactive_points.geojson", function (data) {
-  layers.overlays["Points of Interest"].addData(data);
-});
+// $.getJSON("data/interactive_points.geojson", function (data) {
+//   layers.overlays["Points of Interest"].addData(data);
+// });
 
 function loadData() {
   fetch('data/points.csv')
@@ -243,12 +243,6 @@ function emptyFeatureModal() {
 }
 
 function showFeatureModal(properties) {
-  document.getElementById("feature-title").innerHTML = "";
-  document.getElementById("feature-photo_1").innerHTML = "";
-  document.getElementById("feature-photo_2").innerHTML = "";
-  document.getElementById("feature-button-1").innerHTML = "";
-  document.getElementById("feature-button-2").innerHTML = "";
-  document.getElementById("feature-audio").innerHTML = "";
   let photos = [];
   document.getElementById("feature-title").innerHTML = properties.name;
  
@@ -314,7 +308,7 @@ initSqlJs({
   }
 }).then(function(SQL){
   hideLoader();
-  //loadData();
+  loadData();
   layers.basemaps["Trail Map"].addTo(map);
 });
 
