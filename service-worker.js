@@ -48,9 +48,9 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/leaflet-locatecontrol-0.74.0/L.Control.Locate.min.js', revision: '10.01.21.1'},
   {url: 'assets/vendor/leaflet-mbtiles/Leaflet.TileLayer.MBTiles.js', revision: '10.01.21.1'},
   {url: 'assets/vendor/csv2geojson-5.1.1/csv2geojson.min.js', revision: '11.05.21.2'},
-  {url: 'data/trail_map.mbtiles', revision: '02.17.22.1'},
+  {url: 'data/trail_map.mbtiles', revision: '03.03.22.1'},
   {url: 'data/points.csv', revision: '02.17.22.1'},
-  {url: 'data/interactive_points.geojson', revision: '02.17.22.1'}
+  {url: 'data/interactive_points.geojson', revision: '03.03.22.1'}
 ], {
   // Ignore all URL parameters.
   ignoreURLParametersMatching: [/.*/]
