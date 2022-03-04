@@ -310,5 +310,7 @@ initSqlJs({
   hideLoader();
   loadData();
   layers.basemaps["Trail Map"].addTo(map);
+  $("#invasives").hide();
+    $("#trees").hide();
 });
 

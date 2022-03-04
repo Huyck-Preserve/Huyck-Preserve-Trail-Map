@@ -7,6 +7,9 @@ html, body, #map {
   /* overflow-x: hidden; */
 }
 
+.navbar {
+  padding: 0px;
+}
 #map {
   background: white;
   width: 100%;
