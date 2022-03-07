@@ -131,15 +131,15 @@ const layers = {
 };
 
 
-map.on('zoomend', function () {
-  if (map.getZoom() < 15 && map.hasLayer(layers.overlays["Points of Interest"])) {
-      map.removeLayer(layers.overlays["Points of Interest"]);
-  }
-  if (map.getZoom() > 15 && map.hasLayer(layers.overlays["Points of Interest"]) == false)
-  {
-      map.addLayer(layers.overlays["Points of Interest"]);
-  }   
-});
+// map.on('zoomend', function () {
+//   if (map.getZoom() < 13 && map.hasLayer(layers.overlays["Points of Interest"])) {
+//       map.removeLayer(layers.overlays["Points of Interest"]);
+//   }
+//   if (map.getZoom() > 13 && map.hasLayer(layers.overlays["Points of Interest"]) == false)
+//   {
+//       map.addLayer(layers.overlays["Points of Interest"]);
+//   }   
+// });
 
 /*** Begin Zoom Extent Control ***/
 L.Control.ZoomExtent = L.Control.extend({
