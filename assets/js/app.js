@@ -125,21 +125,21 @@ const layers = {
         });
       }
     })
-    //.addTo(map)
+    .addTo(map)
   },
   select: L.featureGroup(null).addTo(map)
 };
 
 
-// map.on('zoomend', function () {
-//   if (map.getZoom() < 13 && map.hasLayer(layers.overlays["Points of Interest"])) {
-//       map.removeLayer(layers.overlays["Points of Interest"]);
-//   }
-//   if (map.getZoom() > 13 && map.hasLayer(layers.overlays["Points of Interest"]) == false)
-//   {
-//       map.addLayer(layers.overlays["Points of Interest"]);
-//   }   
-// });
+map.on('zoomend', function () {
+  if (map.getZoom() < 12.1 && map.hasLayer(layers.overlays["Points of Interest"])) {
+      map.removeLayer(layers.overlays["Points of Interest"]);
+  }
+  if (map.getZoom() > 12.1 && map.hasLayer(layers.overlays["Points of Interest"]) == false)
+  {
+      map.addLayer(layers.overlays["Points of Interest"]);
+  }   
+});
 
 /*** Begin Zoom Extent Control ***/
 L.Control.ZoomExtent = L.Control.extend({
@@ -221,15 +221,15 @@ $.getJSON("data/interactive_points.geojson", function (data) {
   layers.overlays["Points of Interest"].addData(data);
 });
 
-function loadData() {
-  fetch('data/points.csv')
-  .then(response => response.text())
-  .then(data => csv2geojson.csv2geojson(data, {}, function(err, data) {
-    if (data) {
-      layers.overlays["Points of Interest"].addData(data);
-    }
-  }));
-}
+// function loadData() {
+//   fetch('data/points.csv')
+//   .then(response => response.text())
+//   .then(data => csv2geojson.csv2geojson(data, {}, function(err, data) {
+//     if (data) {
+//       layers.overlays["Points of Interest"].addData(data);
+//     }
+//   }));
+// }
 
 
 function emptyFeatureModal() {
