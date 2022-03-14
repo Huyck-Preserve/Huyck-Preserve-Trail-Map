@@ -10,6 +10,11 @@ html, body, #map {
 .navbar {
   padding: 0px;
 }
+
+.navbar-brand, .navbar-toggler {
+  font-size: 1rem;
+}
+
 #map {
   background: white;
   width: 100%;
