@@ -6,10 +6,10 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '03.13.22.1'},
+  {url: 'index.html', revision: '03.14.22.1'},
   {url: 'manifest.json', revision: '02.10.22.1'},
   {url: 'assets/js/app.js', revision: '03.11.22.1'},
-  {url: 'assets/css/app.css', revision: '03.11.22.1'},
+  {url: 'assets/css/app.css', revision: '03.14.22.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '10.01.21.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '10.01.21.1'},
   {url: 'assets/img/favicon-16x16.png', revision: '10.01.21.1'},
