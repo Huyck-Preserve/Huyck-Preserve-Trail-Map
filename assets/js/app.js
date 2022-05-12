@@ -273,6 +273,12 @@ function showFeatureModal(properties) {
   } else {
     document.getElementById("feature-button-2").innerHTML = "";
   }
+  if (properties.url_3) {
+    document.getElementById("feature-button-3").innerHTML = `<a href="${properties.url_3}" target="_blank"><button type="button" class="btn btn-warning btn-sm">${properties.url_3_button_label}</button></a>`;
+ 
+  } else {
+    document.getElementById("feature-button-3").innerHTML = "";
+  }
   if (properties.audio_filename) {
     document.getElementById("feature-audio").insertAdjacentHTML("beforeend", `<div class="p-2 flex-fill"><audio id="audio" class="mx-auto d-block" controls=""><source type="audio/mpeg" src="data/audio/${properties.audio_filename}"> Your browser does not support the audio element.</audio></div>`)
   } else {
